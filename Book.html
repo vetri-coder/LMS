@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Page</title>
+    <style>
+ /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('../assets/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: black;
+    overflow-x: hidden; /* Allow vertical scrolling */
+    text-align: center;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #131414;
+    padding: 15px 20px;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #FFC107;
+}
+
+/* Search Section */
+.search-container {
+    margin: 70px auto;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px;
+    background: #ffffff;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.language-select {
+    padding: 8px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background: rgb(103, 5, 5);
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.language-select:hover {
+    background: rgb(150, 10, 10);
+}
+
+/* Books Section */
+.container {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.floating-books {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    animation: moveBooks 50s linear infinite;
+}
+
+.book {
+    width: 250px;
+    text-align: center;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    background: #f0f0f0;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.book:hover {
+    transform: scale(1.07);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.book img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.book p {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.form {
+    max-width: 600px; /* Set width of the form */
+    margin: 50px auto; /* Center the form */
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8); /* Slight transparency */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Soft shadow */
+    text-align: left;
+  
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid rgb(199, 176, 176);
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #fa0707;
+            color: white;
+        }
+        h2 {
+            color: #ffffff;
+            text-shadow: 2px 2px 10px rgba(223, 66, 66, 0.5);
+        }
+
+        /* Style input fields */
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgb(6, 0, 0);
+            border-radius: 8px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            color: rgb(24, 23, 23);
+            outline: none;
+        }
+
+        input[type="text"]::placeholder {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        input[type="radio"] {
+            appearance: none; /* Hide default radio button */
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgb(8, 8, 201);
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+        }
+
+        input[type="radio"]:checked::before {
+            content: "";
+            width: 15px;
+            height: 15px;
+            background: rgb(7, 234, 143);
+            border-radius: 50%;
+            position: absolute;
+            
+        }
+
+        .book-type {
+            text-align: left;
+            margin: 15px 0;
+        }
+        .book-type label {
+            display: block;
+            margin: 5px 0;
+        }
+        button {
+           width: 100%;
+           padding: 12px;
+           margin-top: 15px;
+           border: none;
+           border-radius: 8px;
+           font-size: 18px;
+           font-weight: bold;
+           background:blue;
+           color: white;
+           cursor: pointer;
+           transition: 0.3s ease-in-out;
+        }
+
+         button:hover {
+           background: linear-gradient(90deg, #0056b3, #00aaff);
+        }
+
+/* Floating Animation */
+@keyframes moveBooks {
+    from {
+        transform: translateX(120vw);
+    }
+    to {
+        transform: translateX(-120vw);
+    }
+}
+    </style>
+</head>
+<body>
+
+     <!-- Navbar -->
+     <nav class="navbar">
+        <div class="logo">📚Digital Library</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="Book.html">Books</a></li>
+            <li><a href="library.html">Feedback</a></li>
+        </ul>
+    </nav>
+
+    <div class="search-container">
+        <input type="text" id="search" class="search-bar" placeholder="Search books...">
+        <select class="language-select">
+            <option value="en">English</option>
+            <option value="ta">Tamil</option>
+            <option value="ml">Malayalam</option>
+            <option value="te">Telugu</option>
+            <option value="kn">Kannada</option>
+            <option value="hi">Hindi</option>
+            <option value="mr">Marathi</option>
+            <option value="fr">French</option>
+        </select>
+    </div>
+    <div class="container">
+        <div class="floating-books" id="books">
+            <div class="book">
+                <img src="assets\a.jpg" alt="Crime Novel">
+                <p>Serial Killer</p>
+            </div>
+            <div class="book">
+                <img src="assets\b.jpg" alt="Literature Novel">
+                <p>Pride and Prejudice</p>
+            </div>
+            <div class="book">
+                <img src="assets\THEIF.jpg" alt="Historical Novel">
+                <p>The Book Thief</p>
+            </div>
+            <div class="book">
+                <img src="assets\harry 3.jpg" alt="Sci-fi Book">
+                <p>Harry Potter and presioner of Azkaban</p>
+            </div>
+            <div class="book">
+                <img src="assets\AI.jpg" alt="AI Book">
+                <p>Artificial Intelligence: A Modern Approach</p>
+            </div>
+            <div class="book">
+                <img src="assets\evil-dead.jpg" alt="horror Book">
+                <p>EVEL DEAD</p>
+            </div>
+            <div class="book">
+                <img src="assets\HARRY.jpg" alt="Fantasy Novel">
+                <p>Harry Potter and the Sorcerer's Stone</p>
+            </div>
+            <div class="book">
+                <img src="assets\INTER.jpg" alt="Dystopian Novel">
+                <p>INTERVIEW BASED</p>
+            </div>
+            <div class="book">
+                <img src="assets\MALALA.jpg" alt="Dystopian Novel">
+                <p>MALALA</p>
+            </div>
+            <div class="book">
+                <img src="assets\JUSTICE.jpeg" alt="Classic Novel">
+                <p>JUSTICE</p>
+            </div>
+            <div class="book">
+                <img src="assets\NUN.jpeg" alt="Fantasy Novel">
+                <p>THE NUN an horror novel</p>
+            </div>
+            <div class="book">
+                <img src="assets\harry 2.jpg" alt="Fantasy Novel">
+                <p>Harry Potter and the Chamber of Secrets</p>
+            </div>
+            <div class="book">
+                <img src="assets/1984.jpg" alt="Fantasy Novel">
+                <p>1984 Sci-fi Book</p>
+            </div>
+        </div>
+    </div>
+    <div class="form">
+        <h2 style="color:rgb(2, 2, 251); text-align:center;">Digital Library</h2><br>
+        <h3 style="text-align:center ; color:rgba(0, 0, 0, 0.947);">Welcome to our Library for a wounderful experience of the comfortable to learning where you are now...</h3> <br>
+
+        <label for="username" style="font-size: medium;color: crimson; font-weight: 900;">User Name</label><br>
+        <input type="text" id="username" placeholder="Enter your name"><br><br>
+
+        <label for="bookname" style="font-size: medium;color: crimson; font-weight: 900;">Book Name</label><br>
+        <input type="text" id="bookname"style="color: black;" placeholder="Enter book name"><br><br>
+
+        <label>Book Type</label><br>
+        <input type="radio" name="booktype" value="Fiction"> Fiction<br>
+        <input type="radio" name="booktype" value="Programming"> Programming<br>
+        <input type="radio" name="booktype" value="Cooking"> Cooking<br>
+        <input type="radio" name="booktype" value="Crime thriller">Crime thriller<br>
+        <input type="radio" name="booktype" value="Fantasy">Fantasy<br>
+        <input type="radio" name="booktype" value="Mystery">Mystery<br>
+        <input type="radio" name="booktype" value="Historical Fiction">Historical Fiction<br>
+        <input type="radio" name="booktype" value="Artificial Intelligence">Artificial Intelligence<br>
+        <input type="radio" name="booktype" value="Medical Science">Medical Science<br>
+         <input type="radio" name="booktype" value="Others">Others
+        
+        <br><br>
+
+        <button onclick="addBook()">Add Book</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Sl No.</th>
+                    <th>Date of Issue</th>
+                    <th>Reader</th>
+                    <th>Book Name</th>
+                    <th>Genre</th>
+                </tr>
+            </thead>
+            <tbody id="bookTable">
+                <!-- Book entries will be added here dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let bookCount = 0;
+
+        function addBook() {
+            const username = document.getElementById("username").value;
+            const bookname = document.getElementById("bookname").value;
+            const booktype = document.querySelector('input[name="booktype"]:checked');
+
+            if (username === "" || bookname === "" || booktype === null) {
+                alert("Please fill all the fields before adding a book.");
+                return;
+            }
+
+            const table = document.getElementById("bookTable");
+            const row = table.insertRow();
+            bookCount++;
+
+            const date = new Date();
+            const dateString = date.toLocaleDateString();
+
+            row.innerHTML = `
+                <td>${bookCount}</td>
+                <td>${dateString}</td>
+                <td>${username}</td>
+                <td>${bookname}</td>
+                <td>${booktype.value}</td>
+            `;
+
+            // Clear input fields after adding
+            document.getElementById("username").value = "";
+            document.getElementById("bookname").value = "";
+            document.querySelector('input[name="booktype"]:checked').checked = false;
+        }
+    </script>
+</body>
+</html>

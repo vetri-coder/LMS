@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            font-family: Arial, sans-serif;
+            background: url('assets/Leonardo_Kino_XL_A_professional_modern_library_background_with_1.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        /* Navbar */
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #333;
+            padding: 15px 20px;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+    
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+    
+        .nav-links li {
+            margin: 0 15px;
+        }
+    
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .nav-links a:hover {
+            color: #071956;
+        }
+    
+        /* Feedback Form */
+        .form-container {
+            width: 400px; /* Increased width */
+            padding: 25px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    
+        .form-container h2 {
+            margin-bottom: 15px;
+            color: white;
+            font-size: 22px; /* Slightly bigger */
+        }
+    
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 12px; /* Slightly bigger */
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 18px; /* Increased font size */
+        }
+    
+        .form-container input::placeholder,
+        .form-container textarea::placeholder {
+            color: white;
+            opacity: 0.8;
+        }
+    
+        .form-container button {
+            width: 100%;
+            padding: 12px; /* Slightly bigger */
+            border: none;
+            border-radius: 5px;
+            background: #00204d;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+    
+        .form-container button:hover {
+            background: #1f7ce6;
+        }
+    
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 22px;
+            color: white;
+            cursor: pointer;
+        }
+
+    </style>
+    
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">📚Digital Library</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="Book.html">Books</a></li>
+            <li><a href="library.html">Feedback</a></li>
+        </ul>
+    </nav>
+
+    <!-- Feedback Form -->
+    <div class="form-container">
+        <a href="home.html" class="close-btn">&times;</a>
+        <h2 style="color: black;">Feedback Form</h2>
+        <input type="text" id="name" placeholder="Your Name">
+        <input type="email" id="email" placeholder="Your Email">
+        <textarea id="feedback" placeholder="Your Feedback"></textarea>
+        <button onclick="submitFeedback()">Submit</button>
+    </div>
+
+    
+
+    <script>
+       function submitFeedback() {
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let feedback = document.getElementById("feedback").value.trim();
+
+    if (name.length < 2) {
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Name",
+            text: "Please enter a valid name.",
+        });
+        return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Email",
+            text: "Please enter a valid email address (e.g., example@gmail.com).",
+        });
+        return;
+    }
+
+    if (feedback.length < 4) {
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Feedback",
+            text: "Please enter valid feedback (at least 5 characters).",
+        });
+        return;
+    }
+
+    Swal.fire({
+        icon: "success",
+        title: `Thank You, ${name}!`,
+        text: "We appreciate your valuable feedback.",
+        confirmButtonColor: "#3A9D23",
+    }).then(() => {
+        window.location.href = "home.html"; // Redirect after clicking OK
+    });
+}
+
+    </script>
+</body>
+</html>

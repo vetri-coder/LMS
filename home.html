@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Library</title>
+    <style>
+       /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Login Button */
+button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    display: block;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.8);
+    transform: scale(1.05);
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    display: flex;
+    align-items: center;  /* Vertically align elements */
+    justify-content: space-between; /* Space out content */
+    padding: 10px 20px;
+    z-index: 10; 
+    background-color: #0a0909;
+    width: 100%; /* Ensure it spans full width */
+    box-sizing: border-box; /* Prevent extra padding from breaking layout */
+}
+
+
+.navbar .logo {
+    font-size: 20px;
+    font-weight: bold;
+    align-self: center; /* Vertically center logo */
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Proper spacing between links */
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #0015ff;
+}
+
+/* Background Video */
+.video-container {
+    height: 80vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items:end;
+    overflow: hidden;
+    
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit:fill;
+}
+
+.overlay {
+    position:absolute;
+    top: 2%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Push it behind */
+    pointer-events: none; 
+    }
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: rgb(20, 19, 19);
+}
+
+.hero-text h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.hero-text p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background: #1d72fc;
+    padding: 10px 20px;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background: #e6b800;
+}
+
+/* Section Styles */
+section {
+    padding: 40px 20px;
+    text-align: center;
+    background: white;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(3, 24, 255, 0.1);
+}
+
+h2 {
+    color: #333;
+}
+
+p {
+    font-size: 18px;
+    color: #000000;
+}
+
+/* Table Styles */
+table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+    background: white;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #174fc9;
+    color: white;
+}
+
+/* Footer Styles */
+.footer {
+    text-align: center;
+    background: #b0a7a7;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.navbar .login-btn {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto; /* Push it to the right */
+}
+
+
+/* Adjusted Login Button */
+.login-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap; /* Prevents button text from wrapping */
+}
+
+.login-btn:hover {
+    background-color: #001326; /* Darker blue on hover */
+}
+
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+    }
+
+    .login-btn {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">📚Digital Library</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="Book.html">Books</a></li>
+            <li><a href="library.html">Feedback</a></li>
+            <li>
+                <a href="index.html"> <button class="login-btn">Login</button>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Background Video -->
+    <div class="video-container">
+        <video autoplay loop muted>
+            <source src=assets/library-bg.mp4 type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <div class="hero-text">
+            <h1>Welcome to the Digital Library</h1>
+            <p style="color: beige;">Explore a world of knowledge at your fingertips</p>
+            <a href="#about" class="btn">Learn More</a>
+        </div>
+    </div>
+
+    <!-- About the Library -->
+    <section id="about">
+        <h2>About Our Library</h2>
+        <p style="text-align: justify;">Welcome to The Digital Library. Your Gateway to Infinite Knowledge.
+            At The Digital Library, we believe in the power of knowledge to transform lives. Whether you're a 
+            student, researcher, professional, or a curious mind, our digital platform offers
+            a vast collection of resources to fuel your learning journey. Explore, discover, and grow with us. At The Digital Library, we believe that learning is a lifelong adventure. We've created a vibrant 
+            online community where individuals can explore, share, and expand their knowledge. Our extensive digital 
+            collection is carefully curated to cater to a wide range of interests and academic pursuits. Discover new perspectives, delve into fascinating topics,
+             and connect with fellow learners in our dynamic digital space.</p>
+    </section>
+
+    <!-- Books List -->
+    <section id="books">
+        <h2>Book Categories</h2>
+        <table>
+        <tr>
+            <th>S.No</th>
+            <th>Department</th>
+            <th>Titles</th>
+            <th>Volume</th>
+            <th>NJ</th>
+            <th>IJ</th>
+            <th>NM</th>
+            <th>IM</th>
+            <th>Total</th>
+        </tr>
+        <tr><td>1</td><td>Tamil</td><td>2411</td><td>2474</td><td>2</td><td>0</td><td>9</td><td>0</td><td>11</td></tr>
+        <tr><td>2</td><td>English</td><td>1728</td><td>1958</td><td>4</td><td>2</td><td>0</td><td>0</td><td>6</td></tr>
+        <tr><td>3</td><td>Serial Killing</td><td>2666</td><td>3127</td><td>13</td><td>0</td><td>3</td><td>0</td><td>16</td></tr>
+        <tr><td>4</td><td>Coding and Programming</td><td>6169</td><td>7459</td><td>1</td><td>18</td><td>7</td><td>0</td><td>26</td></tr>
+        <tr><td>5</td><td>Mathematics</td><td>1190</td><td>1827</td><td>1</td><td>0</td><td>3</td><td>1</td><td>5</td></tr>
+        <tr><td>6</td><td>Electronics and Communications</td><td>597</td><td>746</td><td>2</td><td>3</td><td>2</td><td>0</td><td>7</td></tr>
+        <tr><td>7</td><td>Fantasy and Science Fiction</td><td>1184</td><td>1838</td><td>4</td><td>0</td><td>2</td><td>0</td><td>6</td></tr>
+        <tr><td>8</td><td>Psychology</td><td>691</td><td>827</td><td>4</td><td>0</td><td>1</td><td>0</td><td>5</td></tr>
+        <tr><td>9</td><td>Journals</td><td>242</td><td>296</td><td>2</td><td>2</td><td>3</td><td>0</td><td>7</td></tr>
+        <tr><td>10</td><td>Business and Economics</td><td>6624</td><td>7808</td><td>25</td><td>5</td><td>2</td><td>1</td><td>33</td></tr>
+    </table>
+        </table>
+    </section>
+
+    <!-- Incharge Details -->
+    <section id="incharge">
+        <h2>Library Incharge</h2>
+        <p><strong>Prof. Kishore Kumar</strong> - Head Librarian</p> <!-- Example Staff Name -->
+        <p><strong>Ms. Sowmya</strong> - Assistant Librarian</p> <!-- Example Staff Name -->
+    </section>
+
+    <!--Rules and Regulations-->
+    <section id="rules">
+        <h2 style="text-align: center;">Offline Library Rules and Regulations</h2>
+        <ol style="text-align: left;">
+            <li> Students shall scan their ID card in the E Gate Register scanner while entering and leaving the library.</li>
+            <li>Books shall be issued only on production of Bar-coded ID cards.</li>
+            <li> Strict silence shall be maintained in the library.</li>
+            <li> Strict silence shall be maintained in the library.</li>
+            <li>Mobile phones and other devices should be in silent mode.</li>
+            <li> Laptops may be used inside the libraries (without any audio).</li>
+            <li>For the benefit of its users, library is following the Open Access System. The books, current journals, back volumes taken out the racks shall not be replaced. They should be left only on the tables. Well trained Library assistants are there to replace them in the proper places</li>
+            <li> Library books should be handled with utmost care. Marking or any kind of scribbling on pages or folding of page is strictly prohibited. Mishandling or damage to the books will invite penalty.</li>
+            <li> In case of loss of any book, the borrower as to pay the current price of the book and a fine decided by the Principal.</li>
+            <li> Reference books, Project Reports, Back Volumes and Periodicals will not be issued. They are only for reference inside the library.</li>
+    
+        </ol>
+    </section>
+    <!-- Contact Us --> <!--Example Contact Details for reference-->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: library@university.edu</p>
+        <p>Phone: +123 456 7890</p>
+        <p>Location: University Campus, Block B</p>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Digital Library. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".nav-links a").forEach(link => {
+                // Check if the link's href starts with '#'
+                if (link.getAttribute("href").startsWith("#")) {
+                    link.addEventListener("click", (event) => {
+                        event.preventDefault();
+                        document.querySelector(link.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
